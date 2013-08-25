@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ -f config.cfg ]; then
+	tr -d '\r' < config.cfg > config.cfg.tmp
+	mv config.cfg.tmp config.cfg
+        . config.cfg
+else
+        echo "Error !!! No Find Config file."
+        exit 13
+fi
+
+FINDFILE=($(ls *.sh))
+for ((i=0; i<$SCRIPTV; i++));do
+	tr -d '\r' < "${FINDFILE[$i]}" > "${FINDFILE[$i]}.tmp"
+	mv "${FINDFILE[$i]}.tmp" "${FINDFILE[$i]}" 
+done
